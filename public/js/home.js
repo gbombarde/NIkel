@@ -22,7 +22,10 @@ document.getElementById("transaction-form").addEventListener("submit", function(
     const type = document.querySelector('input[name="type-input"]:checked').value;
     
     data.transactions.unshift({
-        value: value, type: type, description: description, date: date
+        value: value,
+        type: type,
+        description: description,
+        date: date
     });
     
     saveData(data);
