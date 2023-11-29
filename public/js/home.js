@@ -35,6 +35,10 @@ document.getElementById("transaction-form").addEventListener("submit", function(
     getCashIn();
     getCashOut();
     getTotal();
+    const total = getSaldo();
+    if(total < 0) {
+        alert("Após esse lançamento seu Saldo ficará negativo")
+    }
 
 
     alert("Lançamento adicionado com sucesso.");
@@ -150,6 +154,11 @@ function getCashOut() {
 }
 
 function getTotal() {
+    const total = getSaldo();
+    document.getElementById("total").innerHTML = `RS ${total.toFixed(2)}`;
+}
+
+function getSaldo() {
     const transaction = data.transactions;
     let total = 0;
 
@@ -160,8 +169,7 @@ function getTotal() {
             total -= item.value;
         }
     });
-
-    document.getElementById("total").innerHTML = `RS ${total.toFixed(2)}`;
+    return total;
 }
 
 function saveData(data) {
